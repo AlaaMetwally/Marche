@@ -13,13 +13,17 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let dataController = DataController.shared
 
-
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.hexString
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
-//        let navigationController = window?.rootViewController as! UINavigationController
-//        let viewController = navigationController.topViewController as! UIViewController
+        getCountries()
+        dataController.load()
         return true
     }
 
@@ -91,6 +95,93 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func getCountries(){
+        var components = URLComponents()
+        let fetchCategory = Category(context: DataController.shared.viewContext)
+        
+        components.scheme = "http"
+        components.host = "souq.hardtask.co"
+        components.path = "/app/app.asmx/GetCategories"
+        components.queryItems = [URLQueryItem]()
+        
+        var parameters = ["categoryId" : 0 ,"countryId" : 1]
+        for (key, value) in parameters {
+            let queryItem = URLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        let url = components.url!
+        let request = URLRequest(url: url)
+        self.requestHandler(request: request){ (results,error) in
+            guard let results = results else{
+                return
+            }
+            for res in results{
+                fetchCategory.titleEn = res["TitleEN"] as! String
+                fetchCategory.titleAr = res["TitleAR"] as! String
+                fetchCategory.productCount = res["ProductCount"] as! String
+                fetchCategory.haveModel = res["HaveModel"] as! String
+                fetchCategory.photo = res["Photo"] as! String
+                
+                if let subCat = res["SubCategories"] as? [[String:AnyObject]]{
+                    for sub in subCat{
+                        let fetchSubCategory = Category(context: DataController.shared.viewContext)
+                        fetchSubCategory.titleEn = sub["TitleEN"] as! String
+                        fetchSubCategory.titleAr = sub["TitleAR"] as! String
+                        fetchSubCategory.productCount = sub["ProductCount"] as! String
+                        fetchSubCategory.haveModel = sub["HaveModel"] as! String
+                        fetchSubCategory.photo = sub["Photo"] as! String
+                        fetchCategory.categories?.adding(fetchSubCategory)
+                    }
+                }
+                try? self.dataController.viewContext.save()
+            }
+        }
+    }
+    
+    func requestHandler(request: URLRequest,completionHandler handler:@escaping (_ result: [[String:AnyObject]]?,_ error: String?) -> Void){
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            func displayError(_ error: String) {
+                print(error)
+                handler(nil,error)
+            }
+            
+            /* GUARD: Was there an error? */
+            guard error == nil else {
+                displayError("There was an error with your request: \(error!)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            
+            /* 5. Parse the data */
+            let parsedResult: [[String:AnyObject]]!
+            do {
+                parsedResult = try (JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String:AnyObject]])
+            } catch {
+                displayError("Could not parse the data as JSON: '\(data)'")
+                return
+            }
+            handler(parsedResult,nil)
+        }
+        task.resume()
+    }
 
 }
 
+extension Data {
+    var hexString: String {
+        let hexString = map { String(format: "%02.2hhx", $0) }.joined()
+        return hexString
+    }
+}

@@ -8,14 +8,29 @@
 
 import UIKit
 import Foundation
+import CoreData
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    var fetchedResultsController:NSFetchedResultsController<Category>!
+    let fetchRequest:NSFetchRequest<Category> = Category.fetchRequest()
+    let dataController = DataController.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addNavBarImage()
+        UIApplication.shared.registerForRemoteNotifications()
+        let sortDescriptor = NSSortDescriptor(key: "titleEn", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: "category-album")
+        fetchedResultsController.delegate = self
+        do{
+            try fetchedResultsController.performFetch()
+        }catch{
+            fatalError("The fetch could not be performed: \(error.localizedDescription)")
+        }
     }
     
     func addNavBarImage() {
@@ -34,22 +49,27 @@ class ViewController: UIViewController {
         
         navigationItem.titleView = imageView
         
-        var img = UIImage(named: "top_bar_bg.png") as! UIImage
+        let img = UIImage(named: "top_bar_bg.png")
         navigationController!.navigationBar.setBackgroundImage(img,
                                                                for: .default)
-//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg.png")!)
     }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return fetchedResultsController.sections?.count ?? 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (Singleton.sharedInstance.Categories?.count)!
+        return fetchedResultsController.sections?[0].numberOfObjects ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCollectionViewCell
-        let indexItem = Singleton.sharedInstance.Categories![indexPath.item]
+        cell.favoriteButton.tintColor = .black
+        
+        let indexItem = fetchedResultsController.object(at: indexPath)
         let imageURL = URL(string: indexItem.photo!)!
         let task = URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
             if error == nil {
@@ -84,10 +104,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
         
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "SubCategoriesCollectionViewController") as! SubCategoriesCollectionViewController
-        let indexItem = Singleton.sharedInstance.Categories![indexPath.item]
-        detailController.subCategories = indexItem.subCategories
+        let indexItem = fetchedResultsController.object(at: indexPath)
+        detailController.category = indexItem
         self.navigationController!.pushViewController(detailController, animated: true)
         
     }
+    
 }
 

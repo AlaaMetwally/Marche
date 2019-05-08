@@ -11,6 +11,14 @@ import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell{
     @IBOutlet weak var categoryImage: UIImageView!
-    @IBOutlet weak var checkmark: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
+    
+    @IBAction func favoriteButton(_ sender: Any) {
+        if(favoriteButton.tintColor == .red){
+            favoriteButton.tintColor = .black
+        }else{
+            favoriteButton.tintColor = .red
+        }
+    }
 }
