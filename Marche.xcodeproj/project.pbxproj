@@ -18,6 +18,8 @@
 		9357B587227F75BA007F40C6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B586227F75BA007F40C6 /* RegisterViewController.swift */; };
 		9357B589227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B588227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift */; };
 		9357B58B227FA656007F40C6 /* subCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B58A227FA656007F40C6 /* subCategoryViewCell.swift */; };
+		93665539228368890091919A /* CommonClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93665538228368890091919A /* CommonClient.swift */; };
+		9366553B228368960091919A /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9366553A228368960091919A /* UdacityClient.swift */; };
 		93DC9D1F22822DE700299807 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC9D1E22822DE700299807 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 		9357B586227F75BA007F40C6 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9357B588227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesCollectionViewController.swift; sourceTree = "<group>"; };
 		9357B58A227FA656007F40C6 /* subCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subCategoryViewCell.swift; sourceTree = "<group>"; };
+		93665538228368890091919A /* CommonClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonClient.swift; sourceTree = "<group>"; };
+		9366553A228368960091919A /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		93DC9D1E22822DE700299807 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				93DC9D1E22822DE700299807 /* DataController.swift */,
+				93665538228368890091919A /* CommonClient.swift */,
+				9366553A228368960091919A /* UdacityClient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9366553B228368960091919A /* UdacityClient.swift in Sources */,
 				9357B581227F3C01007F40C6 /* CategoryCollectionViewCell.swift in Sources */,
 				9357B589227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift in Sources */,
 				9357B58B227FA656007F40C6 /* subCategoryViewCell.swift in Sources */,
@@ -246,6 +253,7 @@
 				93DC9D1F22822DE700299807 /* DataController.swift in Sources */,
 				9357B560227F0AFF007F40C6 /* ViewController.swift in Sources */,
 				9357B566227F0AFF007F40C6 /* Marche.xcdatamodeld in Sources */,
+				93665539228368890091919A /* CommonClient.swift in Sources */,
 				9357B55E227F0AFF007F40C6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
