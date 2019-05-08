@@ -23,7 +23,7 @@ class ViewController: UIViewController, NSFetchedResultsControllerDelegate {
         UIApplication.shared.registerForRemoteNotifications()
         let sortDescriptor = NSSortDescriptor(key: "titleEn", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
-        
+        print(fetchRequest)
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: "category-album")
         fetchedResultsController.delegate = self
         do{
@@ -62,6 +62,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(fetchedResultsController.sections?[0].numberOfObjects)
         return fetchedResultsController.sections?[0].numberOfObjects ?? 0
     }
     
