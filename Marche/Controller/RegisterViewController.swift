@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RegisterViewController: UIViewController, UITextFieldDelegate{
+class RegisterViewController: UIViewController{
     
     @IBOutlet weak var Login: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
@@ -21,11 +21,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         activityIndicator.isHidden = true
         passwordTextField.delegate = password
-        getCountries()
+        getCategories()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
         activityIndicator.isHidden = true
     }
     
@@ -52,7 +58,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
-    func getCountries(){
+    func getCategories(){
         var components = URLComponents()
         components.scheme = "http"
         components.host = "souq.hardtask.co"
@@ -115,5 +121,43 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
             handler(parsedResult,nil)
         }
         task.resume()
+    }
+}
+
+extension RegisterViewController{
+    func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        //        When removing observers, if you don't specify the name of the notification, you remove all of them at once! Example:
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        if emailTextField.isEditing || passwordTextField.isEditing{
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+        view.frame.origin.y = 0
+    }
+    
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
+    }
+}
+extension RegisterViewController: UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        unsubscribeFromKeyboardNotifications()
+        return true
     }
 }
