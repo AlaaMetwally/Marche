@@ -8,43 +8,43 @@
 
 import Foundation
 import UIKit
-import CoreData
 
-class RegisterViewController: UIViewController, NSFetchedResultsControllerDelegate{
+class RegisterViewController: UIViewController, UITextFieldDelegate{
     
-    @IBOutlet weak var Register: UIButton!
-    let dataController = DataController.shared
-    var fetchedResultsController:NSFetchedResultsController<Category>!
-    let fetchRequest:NSFetchRequest<Category> = Category.fetchRequest()
-    
+    @IBOutlet weak var Login: UIButton!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    var password = PasswordTextFieldDelegate()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let sortDescriptor = NSSortDescriptor(key: "titleEn", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataController.shared.viewContext, sectionNameKeyPath: nil, cacheName: "category-album")
-        fetchedResultsController.delegate = self
-        do{
-            try fetchedResultsController.performFetch()
-        }catch{
-            fatalError("The fetch could not be performed: \(error.localizedDescription)")
-        }
-       
-        if( fetchedResultsController.fetchedObjects?.count == 0){
-            getCountries()
-        }
+        emailTextField.delegate = self
+        passwordTextField.delegate = password
+        getCountries()
     }
 
-    @IBAction func registerButton(_ sender: Any) {
-        let controller = self.storyboard!.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
-        self.present(controller, animated: true, completion: nil)
+    @IBAction func loginButton(_ sender: Any) {
+   
+        if (self.emailTextField.text?.isEmpty)! || (self.passwordTextField.text?.isEmpty)! {
+            showErrorAlert(message: "please fill all required fields")
+            return
+        }
+        // Try to login with Udacity API
+        UdacityClient.shared.postSession(email: emailTextField.text!, password: passwordTextField.text!) { (result,error: String?) in
+            
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    self.showErrorAlert(message: error!)
+                    return
+                }
+                let controller = self.storyboard!.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+                self.present(controller, animated: true, completion: nil)
+            }
+        }
     }
     
     func getCountries(){
         var components = URLComponents()
-        let fetchCategory = Category(context: DataController.shared.viewContext)
-        
         components.scheme = "http"
         components.host = "souq.hardtask.co"
         components.path = "/app/app.asmx/GetCategories"
@@ -61,26 +61,12 @@ class RegisterViewController: UIViewController, NSFetchedResultsControllerDelega
             guard let results = results else{
                 return
             }
-            for res in results{
-                fetchCategory.titleEn = res["TitleEN"] as! String
-                fetchCategory.titleAr = res["TitleAR"] as! String
-                fetchCategory.productCount = res["ProductCount"] as! String
-                fetchCategory.haveModel = res["HaveModel"] as! String
-                fetchCategory.photo = res["Photo"] as! String
-                
-                if let subCat = res["SubCategories"] as? [[String:AnyObject]]{
-                    for sub in subCat{
-                        let fetchSubCategory = Category(context: DataController.shared.viewContext)
-                        fetchSubCategory.titleEn = sub["TitleEN"] as! String
-                        fetchSubCategory.titleAr = sub["TitleAR"] as! String
-                        fetchSubCategory.productCount = sub["ProductCount"] as! String
-                        fetchSubCategory.haveModel = sub["HaveModel"] as! String
-                        fetchSubCategory.photo = sub["Photo"] as! String
-                        fetchCategory.categories?.adding(fetchSubCategory)
-                    }
-                }
-                try? self.dataController.viewContext.save()
+            var categories: [Category] = []
+            
+            for res in results {
+                categories.append(Category(dictionary: res))
             }
+            Singleton.sharedInstance.categories = categories
         }
     }
     
@@ -121,5 +107,4 @@ class RegisterViewController: UIViewController, NSFetchedResultsControllerDelega
         }
         task.resume()
     }
-    
 }

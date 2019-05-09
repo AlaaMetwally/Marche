@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9345A0B3228468B1009FC67E /* PasswordTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345A0B2228468B1009FC67E /* PasswordTextFieldDelegate.swift */; };
 		9357B55E227F0AFF007F40C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B55D227F0AFF007F40C6 /* AppDelegate.swift */; };
 		9357B560227F0AFF007F40C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B55F227F0AFF007F40C6 /* ViewController.swift */; };
 		9357B563227F0AFF007F40C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9357B561227F0AFF007F40C6 /* Main.storyboard */; };
@@ -21,6 +22,10 @@
 		93665539228368890091919A /* CommonClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93665538228368890091919A /* CommonClient.swift */; };
 		9366553B228368960091919A /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9366553A228368960091919A /* UdacityClient.swift */; };
 		9366553E2283705F0091919A /* CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9366553D2283705F0091919A /* CommonExtension.swift */; };
+		93665542228380C90091919A /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93665541228380C90091919A /* Singleton.swift */; };
+		93665544228380D60091919A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93665543228380D60091919A /* Category.swift */; };
+		93665546228397950091919A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93665545228397950091919A /* TabBarController.swift */; };
+		936655482283BED20091919A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936655472283BED20091919A /* TableViewController.swift */; };
 		93DC9D1F22822DE700299807 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DC9D1E22822DE700299807 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9345A0B2228468B1009FC67E /* PasswordTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextFieldDelegate.swift; sourceTree = "<group>"; };
 		9357B55A227F0AFF007F40C6 /* Marche.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marche.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9357B55D227F0AFF007F40C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9357B55F227F0AFF007F40C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +59,10 @@
 		93665538228368890091919A /* CommonClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonClient.swift; sourceTree = "<group>"; };
 		9366553A228368960091919A /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		9366553D2283705F0091919A /* CommonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtension.swift; sourceTree = "<group>"; };
+		93665541228380C90091919A /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		93665543228380D60091919A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		93665545228397950091919A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		936655472283BED20091919A /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		93DC9D1E22822DE700299807 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +100,8 @@
 				93DC9D1E22822DE700299807 /* DataController.swift */,
 				93665538228368890091919A /* CommonClient.swift */,
 				9366553A228368960091919A /* UdacityClient.swift */,
+				93665541228380C90091919A /* Singleton.swift */,
+				93665543228380D60091919A /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -101,6 +113,9 @@
 				9357B55F227F0AFF007F40C6 /* ViewController.swift */,
 				9357B588227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift */,
 				9357B586227F75BA007F40C6 /* RegisterViewController.swift */,
+				93665545228397950091919A /* TabBarController.swift */,
+				936655472283BED20091919A /* TableViewController.swift */,
+				9345A0B2228468B1009FC67E /* PasswordTextFieldDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -257,6 +272,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9366553B228368960091919A /* UdacityClient.swift in Sources */,
+				9345A0B3228468B1009FC67E /* PasswordTextFieldDelegate.swift in Sources */,
+				93665542228380C90091919A /* Singleton.swift in Sources */,
 				9357B581227F3C01007F40C6 /* CategoryCollectionViewCell.swift in Sources */,
 				9357B589227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift in Sources */,
 				9357B58B227FA656007F40C6 /* subCategoryViewCell.swift in Sources */,
@@ -264,8 +281,11 @@
 				93DC9D1F22822DE700299807 /* DataController.swift in Sources */,
 				9366553E2283705F0091919A /* CommonExtension.swift in Sources */,
 				9357B560227F0AFF007F40C6 /* ViewController.swift in Sources */,
+				93665544228380D60091919A /* Category.swift in Sources */,
 				9357B566227F0AFF007F40C6 /* Marche.xcdatamodeld in Sources */,
+				93665546228397950091919A /* TabBarController.swift in Sources */,
 				93665539228368890091919A /* CommonClient.swift in Sources */,
+				936655482283BED20091919A /* TableViewController.swift in Sources */,
 				9357B55E227F0AFF007F40C6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
