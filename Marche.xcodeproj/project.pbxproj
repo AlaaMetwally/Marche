@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		9345A0B3228468B1009FC67E /* PasswordTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345A0B2228468B1009FC67E /* PasswordTextFieldDelegate.swift */; };
 		9357B55E227F0AFF007F40C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B55D227F0AFF007F40C6 /* AppDelegate.swift */; };
-		9357B560227F0AFF007F40C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B55F227F0AFF007F40C6 /* ViewController.swift */; };
+		9357B560227F0AFF007F40C6 /* CategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B55F227F0AFF007F40C6 /* CategoriesCollectionViewController.swift */; };
 		9357B563227F0AFF007F40C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9357B561227F0AFF007F40C6 /* Main.storyboard */; };
 		9357B566227F0AFF007F40C6 /* Marche.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9357B564227F0AFF007F40C6 /* Marche.xcdatamodeld */; };
 		9357B568227F0B00007F40C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9357B567227F0B00007F40C6 /* Assets.xcassets */; };
 		9357B56B227F0B00007F40C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9357B569227F0B00007F40C6 /* LaunchScreen.storyboard */; };
-		9357B576227F0B00007F40C6 /* MarcheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B575227F0B00007F40C6 /* MarcheTests.swift */; };
 		9357B581227F3C01007F40C6 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B580227F3C01007F40C6 /* CategoryCollectionViewCell.swift */; };
 		9357B587227F75BA007F40C6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B586227F75BA007F40C6 /* RegisterViewController.swift */; };
 		9357B589227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B588227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift */; };
@@ -43,15 +42,13 @@
 		9345A0B2228468B1009FC67E /* PasswordTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextFieldDelegate.swift; sourceTree = "<group>"; };
 		9357B55A227F0AFF007F40C6 /* Marche.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marche.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9357B55D227F0AFF007F40C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9357B55F227F0AFF007F40C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9357B55F227F0AFF007F40C6 /* CategoriesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewController.swift; sourceTree = "<group>"; };
 		9357B562227F0AFF007F40C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9357B565227F0AFF007F40C6 /* Marche.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Marche.xcdatamodel; sourceTree = "<group>"; };
 		9357B567227F0B00007F40C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9357B56A227F0B00007F40C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9357B56C227F0B00007F40C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9357B571227F0B00007F40C6 /* MarcheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarcheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9357B575227F0B00007F40C6 /* MarcheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarcheTests.swift; sourceTree = "<group>"; };
-		9357B577227F0B00007F40C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9357B580227F3C01007F40C6 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9357B586227F75BA007F40C6 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9357B588227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoriesCollectionViewController.swift; sourceTree = "<group>"; };
@@ -110,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				9357B55D227F0AFF007F40C6 /* AppDelegate.swift */,
-				9357B55F227F0AFF007F40C6 /* ViewController.swift */,
+				9357B55F227F0AFF007F40C6 /* CategoriesCollectionViewController.swift */,
 				9357B588227FA0E8007F40C6 /* SubCategoriesCollectionViewController.swift */,
 				9357B586227F75BA007F40C6 /* RegisterViewController.swift */,
 				93665545228397950091919A /* TabBarController.swift */,
@@ -124,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				9357B55C227F0AFF007F40C6 /* Marche */,
-				9357B574227F0B00007F40C6 /* MarcheTests */,
 				9357B55B227F0AFF007F40C6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -151,15 +147,6 @@
 				9357B564227F0AFF007F40C6 /* Marche.xcdatamodeld */,
 			);
 			path = Marche;
-			sourceTree = "<group>";
-		};
-		9357B574227F0B00007F40C6 /* MarcheTests */ = {
-			isa = PBXGroup;
-			children = (
-				9357B575227F0B00007F40C6 /* MarcheTests.swift */,
-				9357B577227F0B00007F40C6 /* Info.plist */,
-			);
-			path = MarcheTests;
 			sourceTree = "<group>";
 		};
 		9366553C228370470091919A /* Extension */ = {
@@ -280,7 +267,7 @@
 				9357B587227F75BA007F40C6 /* RegisterViewController.swift in Sources */,
 				93DC9D1F22822DE700299807 /* DataController.swift in Sources */,
 				9366553E2283705F0091919A /* CommonExtension.swift in Sources */,
-				9357B560227F0AFF007F40C6 /* ViewController.swift in Sources */,
+				9357B560227F0AFF007F40C6 /* CategoriesCollectionViewController.swift in Sources */,
 				93665544228380D60091919A /* Category.swift in Sources */,
 				9357B566227F0AFF007F40C6 /* Marche.xcdatamodeld in Sources */,
 				93665546228397950091919A /* TabBarController.swift in Sources */,
@@ -294,7 +281,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9357B576227F0B00007F40C6 /* MarcheTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

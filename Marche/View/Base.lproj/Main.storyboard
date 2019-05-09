@@ -50,7 +50,14 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="cMe-Pp-uHE" id="Axh-xW-aDN"/>
+                                </connections>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sLE-rW-4Ie">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -76,6 +83,7 @@
                     </view>
                     <connections>
                         <outlet property="Login" destination="F7h-KY-UJU" id="x3y-cK-gR4"/>
+                        <outlet property="activityIndicator" destination="sLE-rW-4Ie" id="PJp-uN-8KT"/>
                         <outlet property="emailTextField" destination="7Et-3m-sNa" id="NE2-gM-gtW"/>
                         <outlet property="passwordTextField" destination="B4z-Zy-b9d" id="ft7-26-ZIx"/>
                         <segue destination="OVQ-rS-6I5" kind="show" id="AdB-Zf-Tmh"/>
@@ -101,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="-763" y="35"/>
         </scene>
-        <!--View Controller-->
+        <!--Categories Collection View Controller-->
         <scene sceneID="G8E-Rl-z4c">
             <objects>
-                <viewController id="AuF-s4-zMv" customClass="ViewController" customModule="Marche" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AuF-s4-zMv" customClass="CategoriesCollectionViewController" customModule="Marche" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tiy-Ss-vSg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,6 +158,10 @@
                                                         <action selector="favoriteButton:" destination="cAE-Hc-13I" eventType="touchUpInside" id="uWh-Pf-oM1"/>
                                                     </connections>
                                                 </button>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="z9E-9b-xVf">
+                                                    <rect key="frame" x="88" y="73" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -168,6 +180,7 @@
                                         </constraints>
                                         <size key="customSize" width="197" height="166"/>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="z9E-9b-xVf" id="qYi-IY-82s"/>
                                             <outlet property="categoryImage" destination="fX4-GA-T0Q" id="rT7-tj-OcP"/>
                                             <outlet property="categoryLabel" destination="bGX-Ve-ip1" id="V9X-zY-p1i"/>
                                             <outlet property="favoriteButton" destination="exX-ZA-P8r" id="KUX-x4-gIL"/>
@@ -305,6 +318,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IQ3-SA-7pS">
+                                                    <rect key="frame" x="88" y="73" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -316,6 +333,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Akk-Y0-N3F" secondAttribute="trailing" constant="2" id="yjP-OR-AQa"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="IQ3-SA-7pS" id="QGK-BW-ZPZ"/>
                                             <outlet property="categoryImage" destination="cjv-0h-Xzc" id="Eai-Ck-ec8"/>
                                             <outlet property="categoryLabel" destination="Akk-Y0-N3F" id="cGd-JX-9Zd"/>
                                         </connections>

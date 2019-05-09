@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CategoriesCollectionViewController.swift
 //  Marche
 //
 //  Created by Geek on 5/5/19.
@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import CoreData
 
-class ViewController: UIViewController{
+class CategoriesCollectionViewController: UIViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
     var dataController = DataController.shared
@@ -48,7 +48,7 @@ class ViewController: UIViewController{
     }
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension CategoriesCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (Singleton.sharedInstance.categories?.count)!
@@ -57,9 +57,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCollectionViewCell
         let fetchRequest:NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        let predicate = NSPredicate(format: "userEmail == %@", Singleton.sharedInstance.userEmail)
+        fetchRequest.predicate = predicate
         let element = try? self.dataController.viewContext.fetch(fetchRequest)
         let indexItem = Singleton.sharedInstance.categories![indexPath.row]
         let imageURL = URL(string: indexItem.photo)!
+        
+        cell.activityIndicator.startAnimating()
         cell.favoriteButton.accessibilityIdentifier = "\(indexPath.row)"
         cell.favoriteButton.tintColor = .black
         for ele in element!{
@@ -73,6 +77,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                 let downloadedImage = UIImage(data: data!)
                 // update UI on a main thread
                 DispatchQueue.main.async{
+                    cell.activityIndicator.stopAnimating()
+                    cell.activityIndicator.isHidden = true
                     cell.categoryLabel.text = "( \(indexItem.productCount) ) \(indexItem.titleEn)"
                     if (downloadedImage == nil){
                         cell.categoryImage.image = UIImage(named: "cat_no_img.png")

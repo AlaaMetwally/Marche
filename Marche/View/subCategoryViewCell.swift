@@ -13,4 +13,5 @@ class subCategoryViewCell: UICollectionViewCell{
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var favoriteImage: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 }

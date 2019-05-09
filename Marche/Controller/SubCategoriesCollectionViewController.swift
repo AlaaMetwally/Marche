@@ -30,12 +30,16 @@ class SubCategoriesCollectionViewController: UIViewController, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubCategoryCell", for: indexPath) as! subCategoryViewCell
         let indexItem = subCategories[indexPath.row]
         let imageURL = URL(string: indexItem["Photo"] as! String)
+        cell.activityIndicator.startAnimating()
+        
         let task = URLSession.shared.dataTask(with: imageURL!) { (data, response, error) in
             if error == nil {
                 // create image
                 let downloadedImage = UIImage(data: data!)
                 // update UI on a main thread
                 DispatchQueue.main.async{
+                    cell.activityIndicator.stopAnimating()
+                    cell.activityIndicator.isHidden = true
                     cell.categoryLabel.text = "( \(indexItem["ProductCount"]!) ) \(indexItem["TitleEN"]!)"
                     if (downloadedImage == nil){
                         cell.categoryImage.image = UIImage(named: "cat_no_img.png")

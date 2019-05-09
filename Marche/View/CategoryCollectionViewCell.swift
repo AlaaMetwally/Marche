@@ -14,6 +14,7 @@ class CategoryCollectionViewCell: UICollectionViewCell, NSFetchedResultsControll
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let fetchRequest:NSFetchRequest<Favorite> = Favorite.fetchRequest()
     var dataController = DataController.shared
@@ -40,6 +41,7 @@ class CategoryCollectionViewCell: UICollectionViewCell, NSFetchedResultsControll
             favoriteCategories.productCount = category.productCount
             favoriteCategories.titleAr = category.titleAr
             favoriteCategories.titleEn = category.titleEn
+            favoriteCategories.userEmail = Singleton.sharedInstance.userEmail
             try? dataController.viewContext.save()
         }
     }

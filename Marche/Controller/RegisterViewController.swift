@@ -14,17 +14,22 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var Login: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var password = PasswordTextFieldDelegate()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTextField.delegate = self
+        activityIndicator.isHidden = true
         passwordTextField.delegate = password
         getCountries()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        activityIndicator.isHidden = true
+    }
+    
     @IBAction func loginButton(_ sender: Any) {
-   
         if (self.emailTextField.text?.isEmpty)! || (self.passwordTextField.text?.isEmpty)! {
             showErrorAlert(message: "please fill all required fields")
             return
@@ -37,6 +42,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
                     self.showErrorAlert(message: error!)
                     return
                 }
+                self.activityIndicator.isHidden = false
+                self.activityIndicator.startAnimating()
+                Singleton.sharedInstance.userEmail = self.emailTextField.text!
+                
                 let controller = self.storyboard!.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
                 self.present(controller, animated: true, completion: nil)
             }

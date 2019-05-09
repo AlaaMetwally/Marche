@@ -15,7 +15,8 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     var dataController = DataController.shared
     var fetchedResultsController:NSFetchedResultsController<Favorite>!
-    
+    let fetchRequest:NSFetchRequest<Favorite> = Favorite.fetchRequest()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchConfig()
@@ -23,18 +24,17 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        var fetchedResultsController:NSFetchedResultsController<Favorite>!
-        tableView.reloadData()
         fetchConfig()
-        
+        tableView.reloadData()
     }
     
     func fetchConfig(){
-        let fetchRequest:NSFetchRequest<Favorite> = Favorite.fetchRequest()
+        let predicate = NSPredicate(format: "userEmail == %@", Singleton.sharedInstance.userEmail)
+        fetchRequest.predicate = predicate
         let sortDescriptor = NSSortDescriptor(key: "titleEn", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: "favorite-categories")
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: "\(Singleton.sharedInstance.userEmail)-categories")
         
         fetchedResultsController.delegate = self
         do{

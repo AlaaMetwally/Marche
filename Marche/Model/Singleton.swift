@@ -10,6 +10,7 @@ import Foundation
 class Singleton {
     
     var categories: [Category]? = [Category]()
+    var userEmail: String = ""
     static let sharedInstance: Singleton = Singleton()
     
 }
