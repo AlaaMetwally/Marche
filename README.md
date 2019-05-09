@@ -1,2 +1,2 @@
 # Marche
-# Marche
+ It is an application used for the udacity users to show all the "souq" categories(e-commerce platform, owned by Amazon, Inc.) and its subcategories, I am using souq api . You are abled to mark what you want as a favorite category and show all your favorites in a table you can delete or save all your favorites.  Users for this project must have an account on udacity inorder to login and after loginning in there will be a tab bar controller contains two views one for the favorite category and the other for showing all categories and when clicking on any category you will be passed to a collection view containg all the subcategories.
