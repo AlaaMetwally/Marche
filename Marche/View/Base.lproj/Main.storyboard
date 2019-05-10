@@ -26,7 +26,7 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B4z-Zy-b9d">
-                                <rect key="frame" x="54" y="523" width="290" height="40"/>
+                                <rect key="frame" x="54" y="423" width="290" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dDp-SP-Uq3"/>
                                 </constraints>
@@ -35,7 +35,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7h-KY-UJU">
-                                <rect key="frame" x="130" y="582" width="139" height="42"/>
+                                <rect key="frame" x="130" y="482" width="139" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -51,7 +51,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Et-3m-sNa">
-                                <rect key="frame" x="54" y="460" width="290" height="40"/>
+                                <rect key="frame" x="54" y="360" width="290" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="fQE-4K-ynp"/>
                                 </constraints>
@@ -65,7 +65,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7Et-3m-sNa" firstAttribute="top" secondItem="4QT-7j-hUh" secondAttribute="top" constant="440" id="4ds-tZ-O0f"/>
+                            <constraint firstItem="7Et-3m-sNa" firstAttribute="top" secondItem="4QT-7j-hUh" secondAttribute="top" constant="340" id="4ds-tZ-O0f"/>
                             <constraint firstItem="F7h-KY-UJU" firstAttribute="top" secondItem="B4z-Zy-b9d" secondAttribute="bottom" constant="19" id="4uH-BG-YhP"/>
                             <constraint firstItem="rld-ZE-qCG" firstAttribute="leading" secondItem="4QT-7j-hUh" secondAttribute="leading" id="6O7-nS-WfG"/>
                             <constraint firstItem="4QT-7j-hUh" firstAttribute="trailing" secondItem="B4z-Zy-b9d" secondAttribute="trailing" constant="31" id="873-Vl-GDQ"/>

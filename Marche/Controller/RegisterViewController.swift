@@ -21,7 +21,6 @@ class RegisterViewController: UIViewController{
         super.viewDidLoad()
         activityIndicator.isHidden = true
         passwordTextField.delegate = password
-        getCategories()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,76 +50,11 @@ class RegisterViewController: UIViewController{
                 self.activityIndicator.isHidden = false
                 self.activityIndicator.startAnimating()
                 Singleton.sharedInstance.userEmail = self.emailTextField.text!
-                
+                CommonClient.sharedInstance.getCategories()
                 let controller = self.storyboard!.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
                 self.present(controller, animated: true, completion: nil)
             }
         }
-    }
-    
-    func getCategories(){
-        var components = URLComponents()
-        components.scheme = "http"
-        components.host = "souq.hardtask.co"
-        components.path = "/app/app.asmx/GetCategories"
-        components.queryItems = [URLQueryItem]()
-        
-        var parameters = ["categoryId" : 0 ,"countryId" : 1]
-        for (key, value) in parameters {
-            let queryItem = URLQueryItem(name: key, value: "\(value)")
-            components.queryItems!.append(queryItem)
-        }
-        let url = components.url!
-        let request = URLRequest(url: url)
-        self.requestHandler(request: request){ (results,error) in
-            guard let results = results else{
-                return
-            }
-            var categories: [Category] = []
-            
-            for res in results {
-                categories.append(Category(dictionary: res))
-            }
-            Singleton.sharedInstance.categories = categories
-        }
-    }
-    
-    func requestHandler(request: URLRequest,completionHandler handler:@escaping (_ result: [[String:AnyObject]]?,_ error: String?) -> Void){
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            func displayError(_ error: String) {
-                print(error)
-                handler(nil,error)
-            }
-            
-            /* GUARD: Was there an error? */
-            guard error == nil else {
-                displayError("There was an error with your request: \(error!)")
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                displayError("Your request returned a status code other than 2xx!")
-                return
-            }
-            
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                displayError("No data was returned by the request!")
-                return
-            }
-            
-            /* 5. Parse the data */
-            let parsedResult: [[String:AnyObject]]!
-            do {
-                parsedResult = try (JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [[String:AnyObject]])
-            } catch {
-                displayError("Could not parse the data as JSON: '\(data)'")
-                return
-            }
-            handler(parsedResult,nil)
-        }
-        task.resume()
     }
 }
 
@@ -131,10 +65,8 @@ extension RegisterViewController{
     }
     
     func unsubscribeFromKeyboardNotifications() {
-        //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        //        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        //        When removing observers, if you don't specify the name of the notification, you remove all of them at once! Example:
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
