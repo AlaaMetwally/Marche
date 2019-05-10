@@ -23,7 +23,7 @@ class CategoryCollectionViewCell: UICollectionViewCell, NSFetchedResultsControll
         var attribute = ((sender as AnyObject).accessibilityIdentifier!)!
         var category = Singleton.sharedInstance.categories![Int(attribute)!]
         
-        if(favoriteButton.tintColor == .red){
+        if favoriteButton.tintColor == .red {
             favoriteButton.tintColor = .black
             let predicate = NSPredicate(format: " titleEn == %@", "\(category.titleEn)")
             fetchRequest.predicate = predicate

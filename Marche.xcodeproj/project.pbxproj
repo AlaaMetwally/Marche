@@ -20,7 +20,7 @@
 		9357B58B227FA656007F40C6 /* subCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9357B58A227FA656007F40C6 /* subCategoryViewCell.swift */; };
 		93665539228368890091919A /* CommonClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93665538228368890091919A /* CommonClient.swift */; };
 		9366553B228368960091919A /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9366553A228368960091919A /* UdacityClient.swift */; };
-		9366553E2283705F0091919A /* CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9366553D2283705F0091919A /* CommonExtension.swift */; };
+		9366553E2283705F0091919A /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9366553D2283705F0091919A /* UIViewController+Additions.swift */; };
 		93665542228380C90091919A /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93665541228380C90091919A /* Singleton.swift */; };
 		93665544228380D60091919A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93665543228380D60091919A /* Category.swift */; };
 		93665546228397950091919A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93665545228397950091919A /* TabBarController.swift */; };
@@ -55,7 +55,7 @@
 		9357B58A227FA656007F40C6 /* subCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = subCategoryViewCell.swift; sourceTree = "<group>"; };
 		93665538228368890091919A /* CommonClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonClient.swift; sourceTree = "<group>"; };
 		9366553A228368960091919A /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
-		9366553D2283705F0091919A /* CommonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtension.swift; sourceTree = "<group>"; };
+		9366553D2283705F0091919A /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
 		93665541228380C90091919A /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		93665543228380D60091919A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		93665545228397950091919A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 		9366553C228370470091919A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				9366553D2283705F0091919A /* CommonExtension.swift */,
+				9366553D2283705F0091919A /* UIViewController+Additions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -266,7 +266,7 @@
 				9357B58B227FA656007F40C6 /* subCategoryViewCell.swift in Sources */,
 				9357B587227F75BA007F40C6 /* RegisterViewController.swift in Sources */,
 				93DC9D1F22822DE700299807 /* DataController.swift in Sources */,
-				9366553E2283705F0091919A /* CommonExtension.swift in Sources */,
+				9366553E2283705F0091919A /* UIViewController+Additions.swift in Sources */,
 				9357B560227F0AFF007F40C6 /* CategoriesCollectionViewController.swift in Sources */,
 				93665544228380D60091919A /* Category.swift in Sources */,
 				9357B566227F0AFF007F40C6 /* Marche.xcdatamodeld in Sources */,

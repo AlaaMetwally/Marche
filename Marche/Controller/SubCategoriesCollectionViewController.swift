@@ -14,10 +14,6 @@ class SubCategoriesCollectionViewController: UIViewController, UICollectionViewD
     
     var subCategories: [[String:AnyObject]] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
